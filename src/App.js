@@ -1,24 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import Item from './components/block'
+import Head from './components/head'
+import Foot from './components/foot';
+import BlockChain from './model/blockchain';
 
+var blockchain = new BlockChain();
+  blockchain.addBlock("Nguyen Anh Tuan");
+  blockchain.addBlock("Nguyễn Anh Tú");
+  blockchain.addBlock("Nguyen Ngọc Hòa");
+  blockchain.addBlock("Nguyễn Thị hậu");
+console.log(blockchain)
 function App() {
+  let dem = 1;
+  const list =blockchain.chain.map(e => <Item preHash={e["prehash"]} lastHash={e["lastHash"]} value={e["data"]} times={e["times"]} id={dem++} key={dem} />);
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Head/>
+    
+      {list}
+
+      <Foot />
     </div>
+    
   );
 }
 
